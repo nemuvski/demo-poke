@@ -1,0 +1,28 @@
+@use "variables" as var;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  text-rendering: optimizeSpeed;
+  background-color: var.$color-gray;
+  color: var.$color-black;
+  font-size: 1rem;
+  letter-spacing: 0.02rem;
+  line-height: 1.15;
+}
+
+img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}

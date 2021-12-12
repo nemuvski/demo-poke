@@ -1,0 +1,21 @@
+@use "variables" as var;
+
+.pokemon-card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.4rem 0.6rem var.$color-black-transparency;
+  background-color: var.$color-white;
+  text-align: center;
+
+  &__name {
+    margin: 0 0 0.75rem;
+    padding: 0;
+    text-transform: capitalize;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  &__image {
+    width: 5.5rem;
+  }
+}
