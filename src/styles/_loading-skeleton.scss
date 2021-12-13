@@ -1,0 +1,9 @@
+@use "variables" as var;
+
+.loading-skeleton {
+  text-align: center;
+
+  > svg {
+    width: 2rem;
+  }
+}

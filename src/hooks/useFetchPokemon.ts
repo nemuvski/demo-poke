@@ -1,7 +1,7 @@
-import { useQuery } from 'react-query'
+import { useInfiniteQuery, useQuery } from 'react-query'
 
 const ENDPOINT = 'https://pokeapi.co/api/v2/pokemon'
-const PAGE_SIZE = 20
+const PAGE_SIZE = 50
 
 export const useFetchPokemon = (idOrName: PokemonApi.IdOrName) => {
   return useQuery<PokemonApi.Single>(`pokemon--${idOrName}`, () =>
@@ -9,8 +9,13 @@ export const useFetchPokemon = (idOrName: PokemonApi.IdOrName) => {
   )
 }
 
-export const useFetchPokemonList = (page: number, size = PAGE_SIZE) => {
-  return useQuery<PokemonApi.List>(`pokemon-list--${page}`, () =>
-    fetch(`${ENDPOINT}?offset=${size * page}&limit=${size}`).then((response) => response.json())
+export const useFetchPokemonList = () => {
+  return useInfiniteQuery<PokemonApi.List>(
+    'pokemon-list',
+    ({ pageParam = `${ENDPOINT}?offset=0&limit=${PAGE_SIZE}` }) => fetch(pageParam).then((response) => response.json()),
+    {
+      // nextプロパティには、次ページのパスが入っている
+      getNextPageParam: (lastPageResponse) => lastPageResponse.next ?? false,
+    }
   )
 }
