@@ -11,4 +11,4 @@ yarn start
 
 ## Scrolling! 👆
 
-![capture](capture.gif)
+<img src="capture.gif" width="300px" />
