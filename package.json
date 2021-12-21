@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "test:unit": "cypress run-ct",
     "test:unit:open": "cypress open-ct",
-    "test:integration": "cypress run"
+    "test:integration": "cypress run",
+    "test:integration:open": "cypress open"
   },
   "dependencies": {
     "react": "^17.0.2",
