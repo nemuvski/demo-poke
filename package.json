@@ -11,6 +11,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test:unit": "cypress run-ct",
+    "test:unit:open": "cypress open-ct",
     "test:integration": "cypress run"
   },
   "dependencies": {
