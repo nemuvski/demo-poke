@@ -21,7 +21,7 @@ const PokemonCard: React.FC<Props> = ({ idOrName }) => {
         <LoadingSkeleton />
       </Maybe>
 
-      <Maybe test={!isLoading && !isFetching}>
+      <Maybe test={!isError && !isLoading && !isFetching}>
         <h1 className='pokemon-card__name'>{data?.name}</h1>
         <img className='pokemon-card__image' loading='lazy' src={data?.sprites.front_default} alt={data?.name} />
       </Maybe>
