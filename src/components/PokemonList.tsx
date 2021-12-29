@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useFetchPokemonList } from '~/hooks/useFetchPokemon'
 import PokemonCard from '~/components/PokemonCard'
 import LoadingSkeleton from '~/components/LoadingSkeleton'
@@ -8,12 +8,7 @@ import useIntersectionObserver from '~/hooks/useIntersectionObserver'
 const PokemonList = () => {
   const observeElementRef = useRef<HTMLButtonElement | null>(null)
 
-  const { data, fetchNextPage, hasNextPage, isLoading, isFetching, isFetchingNextPage, isError } = useFetchPokemonList()
-
-  const isProcessing = useMemo(
-    () => isLoading || isFetching || isFetchingNextPage,
-    [isLoading, isFetching, isFetchingNextPage]
-  )
+  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useFetchPokemonList()
 
   useIntersectionObserver(observeElementRef, () => fetchNextPage(), {
     threshold: 1.0,
@@ -34,15 +29,13 @@ const PokemonList = () => {
         </React.Fragment>
       ))}
 
-      <Maybe test={isError}>Oops, an error occurred 😭</Maybe>
-
       <Maybe test={!!hasNextPage}>
         <button type='button' ref={observeElementRef} disabled={isFetchingNextPage} onClick={() => fetchNextPage()}>
           {isFetchingNextPage ? 'Now loading' : 'Load more'}
         </button>
       </Maybe>
 
-      <Maybe test={isProcessing}>
+      <Maybe test={isFetching || isFetchingNextPage}>
         <LoadingSkeleton />
       </Maybe>
     </div>
