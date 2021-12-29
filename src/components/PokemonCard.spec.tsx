@@ -33,6 +33,11 @@ describe('[Component] PokemonCard', function () {
       </QueryClientProvider>
     )
 
+    cy.on('uncaught:exception', (error) => {
+      expect(error.message).to.include('Request failed')
+      return false
+    })
+
     cy.get('.pokemon-card').contains(/an error occurred/)
   })
 })
