@@ -15,13 +15,9 @@ const PokemonList = () => {
     rootMargin: '0px',
   })
 
-  if (!data) {
-    return null
-  }
-
   return (
     <div className='pokemon-list'>
-      {data.pages.map((group, groupNum) => (
+      {data?.pages.map((group, groupNum) => (
         <React.Fragment key={groupNum}>
           {group.results.map((item) => (
             <PokemonCard idOrName={item.name} key={item.name} />
